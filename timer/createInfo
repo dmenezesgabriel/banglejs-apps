@@ -1,0 +1,5 @@
+require("Storage").write("timer.info",{
+  "name":"My Timer",
+  "src":"timer.app.js",
+  "icon":"timer.img"
+});
