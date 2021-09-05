@@ -1,10 +1,12 @@
-# Bangle js Apps
+# Banglejs Apps
 
-## Apps
+Banglejs apps
 
-- **Timer**: Bangle First App Tutorial
-- **Clock Face**
+## TODO
 
-## References
+[ ] **Automated deploy flow**:
 
-- [Bangle js - First App](https://www.espruino.com/Bangle.js+First+App)
+    - Clone latest version of [Banglejs's apps official repository](https://github.com/espruino/BangleApps)
+    - Add developed apps to apps folder
+    - Append `apps.json` details to repository's `apps.json`
+    - deploy to github-pages via github actions
