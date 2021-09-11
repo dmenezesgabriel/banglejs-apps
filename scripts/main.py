@@ -17,16 +17,14 @@ destination_folder = "./"
 
 # fetch all files
 print(os.listdir(source_folder))
-for file_name in os.listdir(source_folder):
+for file_or_dir in os.listdir(source_folder):
     # construct full file path
-    source = source_folder + file_name
+    source = source_folder + file_or_dir
     print("src:", source)
-    destination = destination_folder + file_name
+    destination = destination_folder + file_or_dir
     print("dest: ", destination)
-    # move only files
-    if os.path.isfile(source):
-        shutil.move(source, destination)
-        print('Moved:', file_name)
+    shutil.move(source, destination)
+    print('Moved:', file_or_dir)
 
 shutil.rmtree(source_folder)
 
