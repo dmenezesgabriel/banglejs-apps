@@ -1,1 +1,3 @@
-print("Script has runned")
+import os
+
+print(os.listdir(os.getcwd()))
