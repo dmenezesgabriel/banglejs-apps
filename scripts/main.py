@@ -16,10 +16,13 @@ source_folder = "./bangle_apps"
 destination_folder = "./"
 
 # fetch all files
+print(os.listdir(source_folder))
 for file_name in os.listdir(source_folder):
     # construct full file path
     source = source_folder + file_name
+    print("src:", source)
     destination = destination_folder + file_name
+    print("dest: ", destination)
     # move only files
     if os.path.isfile(source):
         shutil.move(source, destination)
