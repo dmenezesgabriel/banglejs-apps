@@ -2,7 +2,7 @@
 
 Banglejs apps
 
-[Personal Apps Loader](https://dmenezesgabriel.github.io/banglejs-apps/)
+[Apps Loader - custom apps](https://dmenezesgabriel.github.io/banglejs-apps/)
 
 ## Banglejs useful links
 

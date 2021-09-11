@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@master
         with:
           repository: espruino/BangleApps
-          path: "./bangle_apps"
+          path: "./docs"
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
