@@ -2,6 +2,8 @@
 
 Banglejs apps
 
+[Personal Apps Loader](https://dmenezesgabriel.github.io/banglejs-apps/)
+
 ## Banglejs useful links
 
 ### Banglejs firmware update
