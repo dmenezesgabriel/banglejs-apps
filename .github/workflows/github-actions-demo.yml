@@ -14,6 +14,13 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Setup Python Version
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 # Install the python version needed
+      - name: Execute Python Script # Run the run.py on the repository root directory
+        run: |
+          python ./scripts/main.py
       - name: push
         run: |
           git config --global user.name 'Gabriel Menezes'
