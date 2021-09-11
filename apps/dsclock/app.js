@@ -1,58 +1,39 @@
-// Load fonts
 require("Font7x11Numeric7Seg").add(Graphics);
-// Position on screen
-const X = 190;
-const Y = 130;
 
 function draw() {
-  // work out how to display the current time
-  var date = new Date();
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  var time = hour + ":" + ("0" + minute).substr(-2);
-
-  // Reset the state of the graphics library
-  g.reset();
-  // Draw the current time (4x size 7 segment)
-  g.setFont("7x11Numeric7Seg", 5);
-  g.setFontAlign(1, 1); // align right bottom
-  g.drawString(time, X, Y, true /*clear background*/);
-  // Draw the seconds (2x size 7 segment)
-  g.setFont("7x11Numeric7Seg", 2);
-  g.drawString(
-    ("0" + date.getSeconds()).substr(-2),
-    X + 30,
-    Y,
-    true /*clear background*/
-  );
-  // Draw the date, in a normal font
-  g.setFont("6x8", 2);
-  g.setFontAlign(0, 1); // align center bottom
-  // Pad the date - this clears the background
-  var dateStr = "    " + require("locale").date(date) + "    ";
-  g.drawString(dateStr, g.getWidth() / 2, Y + 20, true /*clear background*/);
+  var d = new Date();
+  var size = Math.floor(g.getWidth() / (7 * 6));
+  var x = g.getWidth() / 2 - size * 6,
+    y = g.getHeight() / 2 - size * 7;
+  g.reset().clearRect(0, y, g.getWidth(), y + size * 12 + 8);
+  g.setFont("7x11Numeric7Seg", size).setFontAlign(1, -1);
+  g.drawString(d.getHours(), x, y);
+  g.setFontAlign(-1, -1);
+  if (d.getSeconds() & 1) g.drawString(":", x, y);
+  g.drawString(("0" + d.getMinutes()).substr(-2), x + size * 4, y);
+  // draw seconds
+  g.setFont("7x11Numeric7Seg", size / 2);
+  g.drawString(("0" + d.getSeconds()).substr(-2), x + size * 18, y + size * 7);
+  // date
+  var s = d.toString().split(" ").slice(0, 4).join(" ");
+  g.setFont("6x8", 2).setFontAlign(0, -1);
+  g.drawString(s, g.getWidth() / 2, y + size * 12);
 }
 
-// Clear the screen once, at startup
-g.clear();
-// Draw immediately at first
-draw();
-var secondInterval = setInterval(draw, 1000);
-// Stop updates when LCD is off, restart when on
-Bangle.on("lcdPower", (on) => {
-  if (secondInterval) {
-    clearInterval(secondInterval);
+// Only update when display turns on
+if (process.env.BOARD != "SMAQ3")
+  // hack for Q3 which is always-on
+  Bangle.on("lcdPower", function (on) {
+    if (secondInterval) clearInterval(secondInterval);
     secondInterval = undefined;
-  }
-  if (on) {
-    secondInterval = setInterval(draw, 1000);
-    draw(); //draw immediately
-  }
-});
+    if (on) secondInterval = setInterval(draw, 1000);
+    draw();
+  });
 
-// Load widgets
+g.clear();
+var secondInterval = setInterval(draw, 1000);
+draw();
+// Show launcher when button pressed
+Bangle.setUI("clock");
 Bangle.loadWidgets();
 Bangle.drawWidgets();
-
-// Show launcher when middle button is pressed
-setWatch(Bangle.showLauncher, BTN2, { repeat: false, edge: "falling" });
