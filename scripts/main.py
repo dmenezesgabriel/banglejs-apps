@@ -12,7 +12,7 @@ for item in REMOVE_LIST:
         if os.path.isfile(item):
             os.remove(item)
 
-source_folder = "./bangle_apps"
+source_folder = "./bangle_apps/"
 destination_folder = "./"
 
 # fetch all files
