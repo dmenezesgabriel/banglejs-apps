@@ -23,7 +23,7 @@ with open("./apps/apps.json", "r") as apps_file:
 with open("./bangle_apps/apps.json", "r") as site_apps_file:
     site_apps_list = json.load(site_apps_file)
 
-updated_apps_list = site_apps_list.extends(apps_list)
+updated_apps_list = site_apps_list.extend(apps_list)
 os.remove("./apps/apps.json")
 
 
