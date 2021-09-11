@@ -10,7 +10,6 @@ jobs:
       - uses: actions/checkout@master
         with:
           name: espruino/BangleApps
-          ref: refs/heads/release
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
