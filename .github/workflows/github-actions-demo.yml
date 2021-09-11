@@ -14,16 +14,12 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: remove files
-        run: |
-          rm -r !(bangle_apps)
-      - name: List files in the repository 2
-        run: |
-          ls ${{ github.workspace }}
       - name: push
         run: |
           git config --global user.name 'Gabriel Menezes'
           git config --global user.email 'dmenezes.gabriel@gmail.com'
-          git commit -am "Deploy site"
-          git push origin/gh-pages
+          git add .
+          git commit -m "message"
+          git checkout -b gh-pages
+          git push origin HEAD:gh-pages --force
       - run: echo "🍏 This job's status is ${{ job.status }}."
