@@ -3,7 +3,7 @@ import shutil
 
 print(os.listdir(os.getcwd()))
 
-REMOVE_LIST = [".github", "apps", ".git", ".gitignore", "README.md", "scripts"]
+REMOVE_LIST = [".github", "apps", ".gitignore", "README.md", "scripts"]
 
 for item in REMOVE_LIST:
     if os.path.exists(item):
