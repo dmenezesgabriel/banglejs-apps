@@ -42,6 +42,6 @@ for item in REMOVE_LIST:
             os.remove(item)
 
 move_files("./bangle_apps/", "./")
-shutil.rmtree(source_folder)
+shutil.rmtree("./bangle_apps/")
 
 print(os.listdir(os.getcwd()))
