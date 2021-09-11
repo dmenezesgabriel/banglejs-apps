@@ -28,7 +28,7 @@ os.remove("./apps/apps.json")
 
 
 with open("./bangle_apps/apps.json", "w") as site_apps_file:
-    site_apps_file.write(site_apps_file)
+    site_apps_file.write(updated_apps_list)
 
 move_files("./apps", "./bangle_apps/apps")
 
