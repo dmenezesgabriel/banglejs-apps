@@ -1,22 +1,8 @@
 require("Font7x11Numeric7Seg").add(Graphics);
 
-// Required to show apple notifications
-var SCREENACCESS = {
-  withApp: true,
-  request: function () {
-    this.withApp = false;
-    stopdraw(); //clears redraw timers etc
-    clearWatch(); //clears button handlers
-  },
-  release: function () {
-    this.withApp = true;
-    startdraw(); //redraw app screen, restart timers etc
-    setButtons(); //install button event handlers
-  },
-};
-//
+var intervalRef = null;
 
-function draw() {
+function drawTime() {
   var d = new Date();
   var size = Math.floor(g.getWidth() / (7 * 6));
   var x = g.getWidth() / 2 - size * 6,
@@ -36,6 +22,31 @@ function draw() {
   g.drawString(s, g.getWidth() / 2, y + size * 12);
 }
 
+function startdraw() {
+  Bangle.setUI("clock");
+  Bangle.drawWidgets();
+  intervalRef = setInterval(drawTime, 1000);
+  drawTime();
+}
+
+function stopdraw() {
+  clearInterval(intervalRef);
+}
+
+// Required to show apple notifications
+var SCREENACCESS = {
+  withApp: true,
+  request: function () {
+    this.withApp = false;
+    stopdraw(); //clears redraw timers etc"
+  },
+  release: function () {
+    this.withApp = true;
+    startdraw(); //redraw app screen, restart timers etc
+  },
+};
+//
+
 // Only update when display turns on
 if (process.env.BOARD != "SMAQ3")
   // hack for Q3 which is always-on
@@ -48,16 +59,9 @@ if (process.env.BOARD != "SMAQ3")
       stopdraw();
     }
     //
-    if (secondInterval) clearInterval(secondInterval);
-    secondInterval = undefined;
-    if (on) secondInterval = setInterval(draw, 1000);
-    draw();
   });
 
 g.clear();
-var secondInterval = setInterval(draw, 1000);
-draw();
-// Show launcher when button pressed
-Bangle.setUI("clock");
 Bangle.loadWidgets();
-Bangle.drawWidgets();
+startdraw();
+setButtons();
