@@ -11,6 +11,10 @@ Banglejs apps
 1. [Espurino downloads - Firmware binaries](https://www.espruino.com/Download)
 2. [Espurino Banglejs - Firmware update guide](https://www.espruino.com/Bangle.js#firmware-updates)
 
+### Image converter
+
+[Espurino - image converter](https://www.espruino.com/Image+Converter)
+
 ### Tutorials
 
 - [Espurino - Banglejs Tutorials](https://www.espruino.com/Bangle.js#tutorials)
