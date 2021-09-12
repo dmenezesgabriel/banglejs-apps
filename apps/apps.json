@@ -2,9 +2,9 @@
   {
     "id": "dsclock",
     "name": "Digital Simple Clock",
-    "shortName": "Digital Clock",
+    "shortName": "DSclock",
     "icon": "app.png",
-    "version": "0.01",
+    "version": "0.03",
     "description": "Simple digital clock",
     "tags": "clock",
     "type": "clock",
