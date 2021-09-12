@@ -13,11 +13,12 @@ Banglejs apps
 
 ### Image converter
 
-[Espurino - image converter](https://www.espruino.com/Image+Converter)
+- [Espurino - image converter](https://www.espruino.com/Image+Converter)
 
 ### Tutorials
 
 - [Espurino - Banglejs Tutorials](https://www.espruino.com/Bangle.js#tutorials)
+- [Adding app to Bangle Loader](https://www.espruino.com/Bangle.js+App+Loader)
 
 ### Reference
 
