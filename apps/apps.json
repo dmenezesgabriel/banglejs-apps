@@ -4,7 +4,7 @@
     "name": "Digital Simple Clock",
     "shortName": "DSclock",
     "icon": "app.png",
-    "version": "0.03",
+    "version": "0.04",
     "description": "Simple digital clock",
     "tags": "clock",
     "type": "clock",

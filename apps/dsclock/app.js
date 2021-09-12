@@ -1,5 +1,21 @@
 require("Font7x11Numeric7Seg").add(Graphics);
 
+// Required to show apple notifications
+var SCREENACCESS = {
+  withApp: true,
+  request: function () {
+    this.withApp = false;
+    stopdraw(); //clears redraw timers etc
+    clearWatch(); //clears button handlers
+  },
+  release: function () {
+    this.withApp = true;
+    startdraw(); //redraw app screen, restart timers etc
+    setButtons(); //install button event handlers
+  },
+};
+//
+
 function draw() {
   var d = new Date();
   var size = Math.floor(g.getWidth() / (7 * 6));
@@ -24,6 +40,14 @@ function draw() {
 if (process.env.BOARD != "SMAQ3")
   // hack for Q3 which is always-on
   Bangle.on("lcdPower", function (on) {
+    // Required to show apple notifications
+    if (!SCREENACCESS.withApp) return;
+    if (on) {
+      startdraw();
+    } else {
+      stopdraw();
+    }
+    //
     if (secondInterval) clearInterval(secondInterval);
     secondInterval = undefined;
     if (on) secondInterval = setInterval(draw, 1000);
